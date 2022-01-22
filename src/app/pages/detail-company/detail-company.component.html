@@ -1,0 +1,29 @@
+
+<h1 class="text-center">Detalle de la compañia</h1>
+
+<div class="card m-2 mx-auto" style="width: 25rem;">
+
+    <div class="card-body">
+        <h4 class="card-title"> <strong>Nombre</strong>: {{company?.name}} </h4>
+        <p class="card-text"> <strong>Descripcion</strong>: {{company?.description}}</p>
+        <p class="card-text"> 
+            <strong>
+                Año de comienzo de actividades
+            </strong>: {{company?.start_year_activities}}
+        </p>
+        <p class="card-text"> <strong>NIT</strong> {{company?.NIT}}</p> 
+        
+        <div>
+            <strong>Juegos desarrollados:</strong>
+
+            <ul>
+                <li *ngFor="let i of games">{{i.title}}</li>
+            </ul>
+
+            
+        </div>
+    </div>
+
+   
+</div>
+

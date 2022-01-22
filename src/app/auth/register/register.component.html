@@ -1,0 +1,59 @@
+
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+
+        <h2>REGISTER</h2>
+  
+        <!-- Login Form -->
+        <form class="form-horizontal form-material" id="registerForm" (submit)="registerUser()" [formGroup]="registerForm">
+            <input type="text" name="email" class="fadeIn second" placeholder="Email" formControlName="email" >
+            <div class="text-center text-danger" style="height: 20px;">
+                <small *ngIf="registerForm.get('email')?.invalid &&  (registerForm.get('email')?.dirty ||
+                registerForm.get('email')?.touched)">Email invalido!</small>  
+            </div>
+
+            <input type="text" name="name" class="fadeIn second" placeholder="Nombre" formControlName="name" >
+            <div class="text-center text-danger"  style="height: 20px;">
+                <small *ngIf="registerForm.get('name')?.invalid &&  (registerForm.get('name')?.dirty ||
+                registerForm.get('email')?.touched)">Nombre invalido!</small>  
+            </div>
+
+            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" formControlName="password" >
+            <div class="text-center text-danger"  style="height: 18px;">
+                <small *ngIf="registerForm.get('password')?.invalid &&  (registerForm.get('password')?.dirty ||
+                registerForm.get('password')?.touched)">Campo requerido!</small>   
+            </div>
+
+            <input type="password" id="password" class="fadeIn third" name="password2" placeholder="repeat password" formControlName="password2" >
+            <div class="text-center text-danger" style="height: 18px;">
+                <small *ngIf="registerForm.get('password2')?.invalid &&  (registerForm.get('password2')?.dirty ||
+                registerForm.get('password2')?.touched)">Campo requerido!</small>   
+                
+            </div>
+
+            <div>
+                <label class="form-check-label mb-4" style="margin-right: 1em;;" for="flexCheckDefault">
+                    Eres vendedor?
+                </label>
+
+                <input  id="checkbox-signup" 
+                        type="checkbox" 
+                        class="form-check-input ml-2"
+                        name="is_seller"
+                        formControlName="is_seller"
+                        >
+              
+              </div>
+
+          
+            <div class="text-center text-danger" style="height: 18px;">
+                <small *ngIf="msgError"> {{ msgError}}</small>   
+            </div>
+            
+            <input type="submit" class="fadeIn fourth" value="Registrase" [disabled]="registerForm.invalid">
+        </form>
+  
+    </div>
+</div>
+  

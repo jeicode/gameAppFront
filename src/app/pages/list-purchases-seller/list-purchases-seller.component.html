@@ -1,0 +1,45 @@
+
+  <div *ngIf="purchasesSeller?.length > 0">
+      <table class="table table-bordered">
+        
+        <thead>
+          <tr>
+            <th scope="col">Fecha compra</th>
+            <th scope="col">Comprador</th>
+            <th scope="col">Juego</th>
+            <th scope="col">Numero de copias compradas</th>
+            <th scope="col">Precio compra</th>
+            <th scope="col">Total compra</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <tr *ngFor="let i of purchasesSeller">
+            <th scope="row"> {{i?.date_purchase  }}</th>
+            <td>{{i?.User.email}}</td>
+            <td>{{i.Game.title}}</td>
+            <td>{{i.number_copies_purchased}}</td> 
+            <td>$ {{i.Game?.price}}</td>
+            <td>{{i.Game?.price * i?.number_copies_purchased}}</td> 
+          
+          </tr>
+        
+        </tbody>
+    </table>
+  
+  
+    <!--Paginator-->
+    <mat-paginator  [length]="total_items"
+                    [pageSize]="5"
+                    [pageSizeOptions]="[3, 5, 10, 15]"
+                    (page)="onPageChange($event)"
+                    >
+    </mat-paginator>
+    
+   
+  </div>
+  
+  
+  <div *ngIf="purchasesSeller?.length === 0" class="alert alert-info">
+    No te han hecho ninguna hasta el momento !
+  </div>

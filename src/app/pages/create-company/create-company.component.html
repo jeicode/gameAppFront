@@ -1,0 +1,38 @@
+
+<h2 class="text-center">Registrar compañia</h2>
+
+<form (submit)="createCompany()" [formGroup]="companyForm">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Nombre</label>
+      <input type="text" class="form-control" name="name" formControlName='name'>
+    </div>
+
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Descripcion</label>
+        <input type="text" class="form-control" name="description" formControlName='description'>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Año en el que comenzó las actividades</label>
+        <input type="text" class="form-control" name="start_year_activities" formControlName='start_year_activities'>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">NIT</label>
+        <input type="text" class="form-control" name="NIT" formControlName='NIT'>
+    </div>
+
+    <div class="text-success mb-4"  *ngIf="msg">
+        {{msg}}
+    </div>
+
+    <div *ngIf="arrErrors && arrErrors.length > 0" class="text-danger">
+        <p *ngFor="let i of arrErrors">{{i.msg}}: {{i.param}}</p>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="companyForm.invalid">
+        Registrar compañia
+    </button>
+  </form>
+
+ 

@@ -1,0 +1,30 @@
+<div class="d-flex">
+    <ul class="list-group">
+        <li class="list-group-item"> 
+            <a [routerLink]="'company/create'" href="">
+                Registrar compañia
+            </a>
+        </li>
+        <li class="list-group-item"> 
+            <a [routerLink]="'game/create'" href="">
+                Registrar juego
+            </a>
+        </li>
+
+        <li class="list-group-item"> 
+            <a [routerLink]="'games/list'" href="">
+                Listar juegos
+            </a>
+        </li>
+
+        <li class="list-group-item"> 
+            <a [routerLink]="'purchases/seller'" href="">
+                Lista de compras
+            </a>
+        </li>
+    </ul>
+
+    <div class="m-4 w-100">
+        <router-outlet></router-outlet>
+    </div>
+</div>

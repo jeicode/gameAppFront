@@ -1,0 +1,88 @@
+<h2 class="text-center">Registrar juego</h2>
+
+<form (submit)="createGame()" [formGroup]="gameForm">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Titulo</label>
+        <input type="text" class="form-control" name="name" formControlName='title'>
+        <div class="text-center text-danger" style="height: 20px;">
+            <small *ngIf="gameForm.get('title')?.invalid &&  (gameForm.get('title')?.dirty ||
+            gameForm.get('title')?.touched)">Campo invalido!</small>  
+        </div>
+    </div>
+
+  
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Stock</label>
+        <input type="number" class="form-control" name="description" formControlName='stock'>
+        <div class="text-center text-danger" style="height: 20px;">
+            <small *ngIf="gameForm.get('stock')?.invalid &&  (gameForm.get('stock')?.dirty ||
+            gameForm.get('stock')?.touched)">Campo invalido!</small>  
+        </div>
+    </div>
+
+    <div class="mb-3">
+
+        <label for="exampleInputEmail1" class="form-label">Compañia</label>
+        <select name="company_id" id="" formControlName='company_id' class="form-control">
+            <option [value]="i.id" *ngFor="let i of companies">{{i?.name}}</option>
+        </select>
+        <div class="text-center text-danger" style="height: 20px;">
+            <small *ngIf="gameForm.get('company_id')?.invalid &&  (gameForm.get('company_id')?.dirty ||
+            gameForm.get('company_id')?.touched)">Campo invalido!</small>  
+        </div>
+        
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Fecha de salida</label>
+        <input type="text" class="form-control" name="departure_date" formControlName='departure_date' placeholder="2020-12-12">
+        <div class="text-center text-danger" style="height: 20px;">
+            <small *ngIf="gameForm.get('departure_date')?.invalid &&  (gameForm.get('departure_date')?.dirty ||
+            gameForm.get('departure_date')?.touched)">Campo invalido!</small>  
+        </div>
+    </div>
+
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Precio</label>
+        <input type="number" class="form-control" name="price" formControlName='price'>
+        <div class="text-center text-danger" style="height: 20px;">
+            <small *ngIf="gameForm.get('price')?.invalid &&  (gameForm.get('price')?.dirty ||
+            gameForm.get('price')?.touched)">Campo invalido!</small>  
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Imagen Url (opcional)</label>
+        <input type="text" class="form-control" name="img" formControlName='img'>
+        <div class="text-center text-danger" style="height: 20px;">
+            <small *ngIf="gameForm.get('img')?.invalid &&  (gameForm.get('img')?.dirty ||
+            gameForm.get('img')?.touched)">Campo invalido!</small>  
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Plataforma</label>
+        <input type="text" class="form-control" name="platform" formControlName='platform'>
+        <div class="text-center text-danger" style="height: 20px;">
+            <small *ngIf="gameForm.get('platform')?.invalid &&  (gameForm.get('platform')?.dirty ||
+            gameForm.get('platform')?.touched)">Campo invalido!</small>  
+        </div>
+    </div>
+
+    <div class="text-success mb-2 " *ngIf="msg">
+        {{msg}}
+    </div>
+
+    <div *ngIf="arrErrors && arrErrors.length > 0" class="text-danger">
+        <p *ngFor="let i of arrErrors">
+            {{i.msg}}: {{i.param}}
+        </p>
+    </div>
+    
+    <button type="submit" class="btn btn-primary" [disabled]="gameForm.invalid">
+        Registrar juego
+    </button>
+  </form>
+
+ 

@@ -1,0 +1,46 @@
+
+<button routerLink="/" class="btn btn-primary">Back</button>
+
+<div class="card m-2 mx-auto" style="width: 25rem;">
+
+    <img class="card-img-top" src="../../../assets/notFound.png" alt="Card image cap" *ngIf="!game?.img">
+    <img class="card-img-top" [src]="game.img" alt="Card image cap" *ngIf="game?.img">
+
+
+    <div class="card-body">
+        <h4 class="card-title"> <strong>Title</strong>: {{game?.title}} </h4>
+        <p class="card-text"> <strong>Price</strong>: ${{game?.price}}</p>
+        <p class="card-text"> <strong>Stock</strong>: {{game?.stock}} avaible</p>
+        <p class="card-text"> <strong>Company</strong> 
+            <a href="" [routerLink]="['/dashboard/company/detail', game?.Company?.id]"> 
+                {{game?.Company.name}}
+            </a>
+        </p>
+        <p class="card-text"> <strong>Publicado por: </strong>: {{game?.User.email}}</p>
+          
+    </div>
+
+    <form action="" class="p-2" (submit)="createPurchase()">
+        <label for=""> <strong>Select quantity:</strong> </label>
+        <input  type="number" 
+                [(ngModel)]="number_copies_purchased"
+                style="width: 100px; display: 
+                inline-block; margin-left: 1em;"
+                name="tentacles" class="form-control"> 
+        
+        <div *ngIf="msg" [class]="classText" style="margin-bottom: 2em;">
+            {{msg}}
+        </div>
+        <button type="submit"
+                style="margin-left: 2em;"
+                class="btn btn-primary" [disabled]="!isAuthUser || !game?.stock || number_copies_purchased <= 0"
+                >Buy
+        </button>
+
+        <div class="alert alert-danger mt-2"*ngIf="!game?.stock">No hay stock! </div>
+
+        <div class="alert alert-danger mt-2"*ngIf="!isAuthUser">Debes autenticarte para comprar un juego! </div>
+
+    </form>
+</div>
+

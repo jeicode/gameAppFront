@@ -1,0 +1,43 @@
+
+<div *ngIf="listGames.length > 0">
+  <div class="d-flex" >
+    <div class="card m-2" style="width: 18rem;" *ngFor="let i of listGames">
+  
+      <img class="card-img-top" src="../../../assets/notFound.png" alt="Card image cap" *ngIf="!i.img">
+      <img class="card-img-top" [src]="i.img" alt="Card image cap" *ngIf="i.img">
+    
+    
+        <div class="card-body">
+          <h3 class="card-title"> <strong>{{i.title}}</strong></h3>
+          <p class="card-text"><strong>Precio: </strong> ${{i.price}}</p>
+          <p class="card-text"> <strong>Stock: </strong> {{i.stock}} avaible</p>
+          <p class="card-text"><strong>Publicado por: </strong>{{i.User.email}}</p>
+          <a [routerLink]="['game/detail', i.id]" class="btn btn-primary">Detalle</a>
+        </div>
+    </div>
+  </div>
+  
+  <!--Paginator-->
+  <mat-paginator [length]="total_items"
+                  [pageSize]="5"
+                  [pageSizeOptions]="[3, 5, 10, 15]"
+                  (page)="onPageChange($event)"
+                  >
+  </mat-paginator>
+</div>
+
+
+<div class="alert alert-info mt-4 text-center" *ngIf="listGames.length == 0">
+  No hay juegos registrados!, Eres vendedor? Ingresa a la pestaña "Administrar juegos" o registrate como 
+  vendedor 
+
+  <a *ngIf="!userIsAuth" class="m-2" [routerLink]="['/login']" style="color: blue;"> 
+    <strong>Iniciar sesion</strong>
+  </a>
+
+  <a *ngIf="userIsAuth" href="" (click)="logout()" style="color: blue;">
+    Cerrar sesion
+  </a>
+  
+</div>
+

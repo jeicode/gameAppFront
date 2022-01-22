@@ -1,0 +1,49 @@
+
+
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+
+        <h2>LOGIN</h2>
+  
+        <!-- Login Form -->
+        <form class="form-horizontal form-material" id="loginform" (submit)="login()" [formGroup]="loginForm">
+            <input type="text" name="email" class="fadeIn second" placeholder="Email" formControlName="email" >
+            <div class="text-center text-danger" style="height: 20px;">
+                <small *ngIf="loginForm.get('email')?.invalid &&  (loginForm.get('email')?.dirty ||
+                loginForm.get('email')?.touched)">Email invalido!</small>  
+            </div>
+
+            <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" formControlName="password" >
+            <div class="text-center text-danger" style="height: 18px;">
+                <small *ngIf="loginForm.get('password')?.invalid &&  (loginForm.get('password')?.dirty ||
+                loginForm.get('password')?.touched)">Campo requerido!</small>   
+            </div>
+
+            <div class="text-center text-danger" style="height: 18px;">
+                <small *ngIf="msgError"> {{ msgError}}</small>   
+            </div>
+
+            <div>
+                <label class="form-check-label mb-4" style="margin-right: 1em;;" for="flexCheckDefault">
+                    Recordar correo
+                  </label>
+
+                <input  id="checkbox-signup" 
+                        type="checkbox" 
+                        class="form-check-input ml-2"
+                        formControlName="remember"
+                        >
+              
+              </div>
+            
+            <input type="submit" class="fadeIn fourth" value="Log In">
+        </form>
+
+        <div id="formFooter">
+        <a [routerLink]="['/register']">Crear cuenta</a>
+        
+        </div>
+  
+    </div>
+</div>
+  

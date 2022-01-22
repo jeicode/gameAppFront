@@ -1,0 +1,56 @@
+<!--Search-->
+
+<form class="d-flex mb-4 justify-content-between" (submit)="searchValue()">
+  <input  type="text" 
+          name="search"
+          class="form-control w-50" 
+          [(ngModel)]="search"
+          placeholder="Buscar por titulo, plataforma, precio">
+    <button class="btn btn-primary">Buscar</button>
+</form>
+
+<!--Data-->
+<div *ngIf="listGames.length > 0">
+    <table class="table table-bordered">
+      
+      <thead>
+        <tr>
+          <th scope="col">Titulo</th>
+          <th scope="col">Stock</th>
+          <th scope="col">Campañia</th>
+          <th scope="col">Plataforma</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of listGames">
+          <th scope="row"> {{i.title}}</th>
+          <td>{{i?.stock}}</td>
+          <td>{{i.Company.name}}</td>
+          <td>{{i.platform}}</td>
+          <th scope="col">$ {{i.price}}</th>
+          <td>
+            <a  [routerLink]="['/dashboard/game/detail/', i.id]" href="">
+              Ver detalle
+            </a>
+          </td>
+        </tr>
+      
+      </tbody>
+  </table>
+
+
+  <mat-paginator  [length]="total_items"
+                  [pageSize]="5"
+                  [pageSizeOptions]="[3, 5, 10, 15]"
+                  (page)="onPageChange($event)"
+                  >
+  </mat-paginator>
+ 
+</div>
+
+
+<div *ngIf="listGames.length === 0" class="alert alert-info">
+  No tienes ningun juego registrado !
+</div>
